@@ -23,6 +23,10 @@ let player1 = {
   x: 300,
   y: 400
 }
+let player1Atack = {
+  y1: 20,
+  y2: 45
+}
 let player2 = {
   x: 1100,
   y: 400
@@ -47,6 +51,16 @@ function movePlayr(){
 if (pressedKeys.KeyD===true) {
   if (player1.x < 1450) {
     player1.x = player1.x + 2;
+  }
+}
+if (pressedKeys.KeyE===true) {
+if (player1Atack.y1 < 115 ) {
+    player1Atack.y1 = player1Atack.y1 + 5;
+    player1Atack.y2 = player1Atack.y2 + 5;
+  }
+  else{
+    player1Atack.y1=20;
+    player1Atack.y2=45;
   }
 }
 }
@@ -78,6 +92,9 @@ function playerFirst(event) {
   if (event.code === 'KeyD') {
     pressedKeys.KeyD = true;
 }
+if (event.code === 'KeyE') {
+  pressedKeys.KeyE = true;
+}
 }
 function playerUp(event) {
   // console.log(event.code)
@@ -89,6 +106,9 @@ function playerUp(event) {
     }
     if(event.code === 'KeyD') {
       pressedKeys.KeyD = false;
+    }
+    if(event.code === 'KeyE') {
+      pressedKeys.KeyE = false;
     }
     }
     
@@ -147,10 +167,10 @@ function draw() {
   ctx.fillRect(player1.x, player1.y, 50, 200);
 
   ctx.beginPath();
-  ctx.moveTo(player1.x+50,player1.y+50);
-  ctx.lineTo(player1.x+130,player1.y+20);
-  ctx.lineTo(player1.x+130,player1.y+45);
-  ctx.lineTo(player1.x+50,player1.y+75);
+  ctx.moveTo(player1.x+50,player1.y+70);
+  ctx.lineTo(player1.x+130,player1.y+player1Atack.y1);
+  ctx.lineTo(player1.x+130,player1.y+player1Atack.y2);
+  ctx.lineTo(player1.x+50,player1.y+95);
   ctx.fillStyle = 'yellow';
   ctx.fill();
    // меняем цвет клеток
