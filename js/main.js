@@ -9,7 +9,10 @@ var img = new Image();
 img.src = 'img/fon.png'
 var timers = 100;
 var center = 720;
-
+var anim=550;
+var speed=0;
+var mol = new Image()
+mol.src = 'img/21034627.jpg'
 let player1 = {
   x: 300,
   y: 400
@@ -22,7 +25,19 @@ let player2 = {
   x: 1100,
   y: 400
 }
+function animac(){
+  ctx.drawImage(mol, anim,0,800,1800,500, 100, 100, 400);
+  speed++
+  console.log(speed)
+  if(speed%15===0){
+    if(speed!==80) {
+      anim += 1900;
+    }
 
+  }
+
+
+}
 document.addEventListener("keydown", playerFirst);
 document.addEventListener("keyup", playerUp);
 document.addEventListener("keydown", playerTwo);
@@ -132,6 +147,8 @@ function movePlayrTwo(){
 
 function draw() {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  //animac();
+
   ctx.strokeStyle = 'OrangeRed';
   ctx.strokeRect(100, 40, 550, 50)
   ctx.fillStyle = 'LawnGreen'; // меняем цвет клеток
@@ -173,7 +190,7 @@ function draw() {
     player2.y = player2.y + 3;
   }
   ctx.fillRect(player2.x, player2.y, 50, 200);
-console.log(set)
+
   requestAnimationFrame(draw)
 }
 
