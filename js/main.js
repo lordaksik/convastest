@@ -9,13 +9,21 @@ var img = new Image();
 img.src = 'img/fon.png'
 var timers = 100;
 var center = 720;
-var anim=550;
 var speed=0;
 var mol = new Image()
-mol.src = 'img/21034627.jpg'
-let player1 = {
+mol.src = 'img/pers.png'
+let player = {
   x: 300,
-  y: 400
+  y: 400,
+  height:250,
+  width:150,
+  speed:0,
+  imgX:250,
+  imgY:0,
+  xe:950,
+  xy:2000,
+  stopX:0,
+  stopY:0
 }
 let player1Atack = {
   y1: 20,
@@ -25,15 +33,21 @@ let player2 = {
   x: 1100,
   y: 400
 }
-function animac(){
-  ctx.drawImage(mol, anim,0,800,1800,500, 100, 100, 400);
-  speed++
-  console.log(speed)
-  if(speed%15===0){
-    if(speed!==80) {
-      anim += 1900;
-    }
 
+function animac(){
+ speed++
+
+  player.xe=0;
+  player.xy=0;
+  player.stopY=0;
+  if(speed%5===0){
+    if(speed!==15) {
+      player.imgX+=800;
+    }
+    else{
+      player.imgX=200;
+      speed=0;
+    }
   }
 
 
@@ -85,6 +99,12 @@ function playerUp(event) {
     if(event.code === 'KeyE') {
        set.delete('KeyE')
     }
+  if ((set.has('KeyD')===false)&&(set.has('KeyA')===false)&&(set.has('KeyW')===false)) {
+    player.xe = 950
+    player.xy = 2000
+    player.imgX=250
+        player.imgYg=150
+  }
     }
 function playerUp2(event) {
   if (event.code === 'KeyJ') {
@@ -98,20 +118,27 @@ function playerUp2(event) {
   }
     }
 function movePlayr(){
+ // ctx.drawImage(mol, player.imgX,player.imgY,800,1050,player.x, player.y, player.width, player.height);//x картинки y картинки ширина и высота картинки
+
   if (set.has('KeyA')===true) {
-    if (player1.x > 0) {
-      player1.x = player1.x - 2;
+    if (player.x > 0) {
+      player.x = player.x - 5;
     }
   }
   if (set.has('KeyW')===true) {
-    if (player1.y > 150) {
-      player1.y = player1.y - 10;
+    if (player.y > 150) {
+      player.y = player.y - 10;
     }
+
   }
   if (set.has('KeyD')===true) {
-    if (player1.x < 1450) {
-      player1.x = player1.x + 2;
+    if (player.x < 1350) {
+      player.x = player.x + 5;
     }
+
+  }
+  if ((set.has('KeyD')===true) || (set.has('KeyA')===true)||(set.has('KeyW')===true)){
+    animac();
   }
   if (set.has('KeyE')===true) {
     if (player1Atack.y1 < 115 ) {
@@ -147,7 +174,8 @@ function movePlayrTwo(){
 
 function draw() {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  //animac();
+  ctx.drawImage(mol, player.imgX+player.xe,player.imgY+player.xy,800,1050,player.x, player.y, player.width, player.height);//x картинки y картинки ширина и высота картинки
+
 
   ctx.strokeStyle = 'OrangeRed';
   ctx.strokeRect(100, 40, 550, 50)
@@ -168,22 +196,12 @@ function draw() {
   movePlayrTwo()
   ctx.fillText(timers, center, 80);
 
-  ctx.fillStyle = 'red'; // меняем цвет клеток
-  if (player1.y < 400) {
-    player1.y = player1.y + 3;
+  //ctx.fillStyle = 'red'; // меняем цвет клеток
+  if (player.y < 400) {
+    player.y = player.y + 5;
   }
+  //ctx.drawImage(mol, player.imgX,player.imgY,800,1050,player.x, player.y, player.width, player.height);//x картинки y картинки ширина и высота картинки
 
-  ctx.fillRect(player1.x, player1.y, 50, 200);
-
-  ctx.beginPath();
-  ctx.moveTo(player1.x+50,player1.y+70);
-  ctx.lineTo(player1.x+130,player1.y+player1Atack.y1);
-  ctx.lineTo(player1.x+130,player1.y+player1Atack.y2);
-  ctx.lineTo(player1.x+50,player1.y+95);
-  ctx.fillStyle = 'yellow';
-  ctx.fill();
-   // меняем цвет клеток
-  ctx.closePath()
 
   ctx.fillStyle = 'yellow'; // меняем цвет клеток
   if (player2.y < 400) {
