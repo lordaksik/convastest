@@ -11,17 +11,17 @@ var timers = 100;
 var center = 720;
 var speed=0;
 var mol = new Image()
-mol.src = 'img/pers.png'
+mol.src = 'img/run_right.png'
 let player = {
   x: 300,
   y: 400,
   height:250,
   width:150,
   speed:0,
-  imgX:250,
+  imgX:700,
   imgY:0,
-  xe:950,
-  xy:2000,
+  xe:0,
+  xy:0,
   stopX:0,
   stopY:0
 }
@@ -42,10 +42,10 @@ function animac(){
   player.stopY=0;
   if(speed%5===0){
     if(speed!==15) {
-      player.imgX+=800;
+      player.imgX+=100;
     }
     else{
-      player.imgX=200;
+      player.imgX=700;
       speed=0;
     }
   }
@@ -174,7 +174,7 @@ function movePlayrTwo(){
 
 function draw() {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  ctx.drawImage(mol, player.imgX+player.xe,player.imgY+player.xy,800,1050,player.x, player.y, player.width, player.height);//x картинки y картинки ширина и высота картинки
+  ctx.drawImage(mol, player.imgX+player.xe,player.imgY+player.xy,100,115,player.x, player.y, player.width, player.height);//x картинки y картинки ширина и высота картинки
 
 
   ctx.strokeStyle = 'OrangeRed';
