@@ -6,7 +6,7 @@ if (canvas.getContext) {
 }
 let set = new Set();
 var img = new Image();
-img.src = 'img/fon.png'
+img.src = 'img/1700.jpg'
 var timers = 100;
 var center = 720;
 var speed=0;
@@ -40,8 +40,8 @@ function animac(){
   player.xe=0;
   player.xy=0;
   player.stopY=0;
-  if(speed%5===0){
-    if(speed!==15) {
+  if(speed%10===0){
+    if(speed!==30) {
       player.imgX+=100;
     }
     else{
@@ -100,10 +100,7 @@ function playerUp(event) {
        set.delete('KeyE')
     }
   if ((set.has('KeyD')===false)&&(set.has('KeyA')===false)&&(set.has('KeyW')===false)) {
-    player.xe = 950
-    player.xy = 2000
-    player.imgX=250
-        player.imgYg=150
+
   }
     }
 function playerUp2(event) {
@@ -174,7 +171,7 @@ function movePlayrTwo(){
 
 function draw() {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  ctx.drawImage(mol, player.imgX+player.xe,player.imgY+player.xy,100,115,player.x, player.y, player.width, player.height);//x картинки y картинки ширина и высота картинки
+  ctx.drawImage(mol, player.imgX+player.xe,player.imgY+player.xy,110,115,player.x, player.y, player.width, player.height);//x картинки y картинки ширина и высота картинки
 
 
   ctx.strokeStyle = 'OrangeRed';
